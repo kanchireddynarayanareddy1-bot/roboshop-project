@@ -10,6 +10,14 @@ if [ $UserId -ne 0 ]; then
   exit 1
 fi
 echo -e "${G}Script is running with root user privileges: $(date)${N}"
+ 
+ cp mongo.repo /etc/yum.repos.d/mongo.repo
+if [ $? -ne 0 ]; then
+  echo -e "${R}Failed to add MongoDB repository. Check the mongo.repo file and try again.${N}"
+  exit 1
+else
+  echo -e "${G}MongoDB repository added successfully.${N}"
+fi
 
 dnf install -y mongodb-org &>>/tmp/mongodb.log
 if [ $? -ne 0 ]; then
