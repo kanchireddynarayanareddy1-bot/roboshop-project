@@ -11,3 +11,11 @@ if [ $UserId -ne 0 ]; then
 fi
 echo -e "${G}Script is running with root user privileges: $(date)${N}"
 
+dnf install -y mongodb-org &>>/tmp/mongodb.log
+if [ $? -ne 0 ]; then
+  echo -e "${R}Failed to install MongoDB. Check /tmp/mongodb.log for details.${N}"
+  exit 1
+else
+  echo -e "${G}MongoDB installed successfully.${N}"
+fi
+
