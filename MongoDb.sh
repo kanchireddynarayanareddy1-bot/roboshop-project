@@ -1,8 +1,13 @@
 !#/bin/bash
 
 UserId=$(id -u)
-if [ $ $userId -ne 0 ]; then
+R="\e[031m"
+G="\e[032m"
+Y="\e[033m"
+N="\e[0m"
+if [ $UserId -ne 0 ]; then
   echo "You should run this script as root user or with sudo privileges"
   exit 1
 fi
-echo "sccript is running with root user privileges: $(time)"
+echo -e "${G}Script is running with root user privileges: $(date)${N}"
+
